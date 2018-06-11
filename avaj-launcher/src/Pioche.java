@@ -1,10 +1,10 @@
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Pioche
 {
     public int size;
-    public HashSet<Domino> pioche_hs = new HashSet<Domino>();
+    public ArrayList<Domino> pioche_list = new ArrayList<Domino>();
 
 
     public Pioche()
@@ -13,13 +13,20 @@ public class Pioche
         {
             for (int j = i; j < 7; ++j)
             {
-                System.out.println("i = " + i + " , j = " + j);
+                //System.out.println("i = " + i + " , j = " + j);
                 Domino dom = new Domino(i, j);
-                pioche_hs.add(dom);
+                pioche_list.add(dom);
             }
         }
-        size = 5;
-        print_pioche();
+        size = 28;
+        //print_pioche();
+    }
+
+    public void remove(int num)
+    {
+        System.out.println("removing from pioche");
+        pioche_list.remove(num);
+        --size;
     }
 
     public void print_pioche()
@@ -31,17 +38,13 @@ public class Pioche
             System.out.println(i++);
             //System.out.println(o.getClass());
         }*/
-        Iterator<Domino> it = pioche_hs.iterator();
+        Iterator<Domino> it = pioche_list.iterator();
         while(it.hasNext())
         {
-            System.out.println(i++);
+            System.out.println(++i);
             Domino dom = it.next();
             System.out.println(dom.getVal1() + " : " + dom.getVal2());
         }
     }
 
-    public void remove_pioche() {
-        size = size - 2;
-        System.out.println("Hello" + size);
-    }
 }

@@ -9,10 +9,7 @@ public class Domino
         val2 = startVal2;
     }
 
-    public int getVal1()
-    {
-        return val1;
-    }
+    public int getVal1() { return val1; }
 
     public int getVal2()
     {
