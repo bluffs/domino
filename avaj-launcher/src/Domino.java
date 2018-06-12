@@ -9,6 +9,14 @@ public class Domino
         val2 = startVal2;
     }
 
+    public boolean isDouble()
+    {
+        if (val1 == val2)
+            return true;
+        else
+            return false;
+    }
+
     public int getVal1() { return val1; }
 
     public int getVal2()

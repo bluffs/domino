@@ -3,32 +3,74 @@ import java.util.List;
 
 public class Main
 {
+    public static Plateau plateau = new Plateau();
     public static void main(String[] args)
     {
-        Plateau plateau = new Plateau();
         Pioche pioche = new Pioche();
-        List<Player> player_list = new LinkedList<Player>();
+        List<Player> player_list = new LinkedList<>();
         int starter;
         Player player1 = new Player(pioche, "Jalel");
         player_list.add(player1);
         Player player2 = new Player(pioche, "Zak");
         player_list.add(player2);
-        System.out.println("Size = " + pioche.size);
         for (Player player : player_list)
             player.show_hand();
         starter = find_first(player_list);
         if (starter == -1)
         {
             System.out.println("Players don't have any doubles");
-            //player draw dominos untill double
+            int turn = 0;
+            while (starter == -1)
+            {
+                if (pick_double(player_list.get(turn), pioche))
+                    starter = turn;
+                ++turn;
+                turn %= player_list.size();
+            }
         }
         else
         {
             System.out.println("Player num " + starter + " starts");
         }
+        playing(player_list, starter);
     }
 
-    public static int find_first(List<Player> player_list)
+    private static void playing(List<Player> player_list, int turn)
+    {
+        play_first(player_list.get(turn));
+        turn = (++turn) % player_list.size();
+        while (true)
+        {
+            //player_list.get(turn).play(plateau, pioche);
+            turn = (++turn) % player_list.size();
+        }
+    }
+
+    private static void play_first(Player player)
+    {
+        int max_double = 0;
+        Domino max_dom = new Domino(0, 0);
+        for(Domino dom : player.hand_list)
+        {
+            if (dom.isDouble())
+            {
+                if (max_double <= dom.getVal1())
+                {
+                    max_double = dom.getVal1();
+                    max_dom = dom;
+                }
+            }
+        }
+        System.out.println(max_dom.getVal1() + " : " + max_dom.getVal2());
+        //player.play_domino(max_dom);
+    }
+
+    private static boolean pick_double(Player player, Pioche pioche)
+    {
+        return (player.draw(pioche));
+    }
+
+    private static int find_first(List<Player> player_list)
     {
         for (int i = 6; i >= 0; i--)
         {

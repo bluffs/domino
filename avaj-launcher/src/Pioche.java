@@ -3,7 +3,6 @@ import java.util.Iterator;
 
 public class Pioche
 {
-    public int size;
     public ArrayList<Domino> pioche_list = new ArrayList<Domino>();
 
 
@@ -18,7 +17,6 @@ public class Pioche
                 pioche_list.add(dom);
             }
         }
-        size = 28;
         //print_pioche();
     }
 
@@ -26,7 +24,6 @@ public class Pioche
     {
         System.out.println("removing from pioche");
         pioche_list.remove(num);
-        --size;
     }
 
     public void print_pioche()
