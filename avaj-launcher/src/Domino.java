@@ -2,6 +2,8 @@ public class Domino
 {
     private int val1;
     private int val2;
+    private boolean val1_avail;
+    private boolean val2_avail;
 
     public Domino(int startVal1, int startVal2)
     {
@@ -16,6 +18,9 @@ public class Domino
         else
             return false;
     }
+
+    public boolean isVal1_avail() { return val1_avail; }
+    public boolean isVal2_avail() { return val2_avail; }
 
     public int getVal1() { return val1; }
 

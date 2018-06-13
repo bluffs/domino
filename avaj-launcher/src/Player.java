@@ -34,7 +34,16 @@ public class Player
 
     public void dom_click(Domino dom)
     {
-        //check_domino(dom, plateau);
+        int val = dom.getVal1();
+
+        for (Domino domi : plateau.domino_list)
+        {
+            if ((domi.isVal1_avail && domi.getVal1() == val)
+             || (domi.isVal2_avail && domi.getVal2() == val))
+            {
+                //domi.addfleche();
+            }
+        }
     }
 
     public void play(Pioche pioche)
